@@ -1,10 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone, MessageCircle, MapPin } from "lucide-react";
+import { Phone, MessageCircle, MapPin, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useBooking } from "./booking-context";
 
 export function CTA() {
+  const { openBookingModal } = useBooking();
+  
   return (
     <section id="contact" className="py-24 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
@@ -50,19 +53,22 @@ export function CTA() {
             >
               <Button
                 size="lg"
+                onClick={openBookingModal}
                 className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg rounded-full glow glow-hover transition-all duration-300"
               >
-                <Phone className="w-5 h-5 mr-2" />
-                +7 (495) 123-45-67
+                <Send className="w-5 h-5 mr-2" />
+                Оставить заявку
               </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-border text-foreground hover:bg-secondary px-8 py-6 text-lg rounded-full transition-all duration-300"
-              >
-                <MessageCircle className="w-5 h-5 mr-2" />
-                Написать в WhatsApp
-              </Button>
+              <a href="tel:+74951234567">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-border text-foreground hover:bg-secondary px-8 py-6 text-lg rounded-full transition-all duration-300"
+                >
+                  <Phone className="w-5 h-5 mr-2" />
+                  +7 (495) 123-45-67
+                </Button>
+              </a>
             </motion.div>
 
             {/* Contact info */}

@@ -8,20 +8,23 @@ import { Process } from "@/components/landing/process";
 import { FAQ } from "@/components/landing/faq";
 import { CTA } from "@/components/landing/cta";
 import { Footer } from "@/components/landing/footer";
+import { BookingProvider } from "@/components/landing/booking-context";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <Header />
-      <Hero />
-      <Advantages />
-      <Services />
-      <Cases />
-      <Testimonials />
-      <Process />
-      <FAQ />
-      <CTA />
-      <Footer />
-    </main>
+    <BookingProvider>
+      <main className="min-h-screen">
+        <Header />
+        <Hero />
+        <Advantages />
+        <Services />
+        <Cases />
+        <Testimonials />
+        <Process />
+        <FAQ />
+        <CTA />
+        <Footer />
+      </main>
+    </BookingProvider>
   );
 }

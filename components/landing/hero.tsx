@@ -3,8 +3,11 @@
 import { motion } from "framer-motion";
 import { Phone, MapPin, Clock, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useBooking } from "./booking-context";
 
 export function Hero() {
+  const { openBookingModal } = useBooking();
+  
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background gradient */}
@@ -69,6 +72,7 @@ export function Hero() {
           >
             <Button
               size="lg"
+              onClick={openBookingModal}
               className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg rounded-full glow glow-hover transition-all duration-300"
             >
               <Phone className="w-5 h-5 mr-2" />

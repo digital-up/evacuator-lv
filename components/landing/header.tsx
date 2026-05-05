@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useBooking } from "./booking-context";
 
 const navigation = [
   { name: "Услуги", href: "#services" },
@@ -16,6 +17,7 @@ const navigation = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { openBookingModal } = useBooking();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,7 +62,10 @@ export function Header() {
               <a href="tel:+74951234567" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">
                 +7 (495) 123-45-67
               </a>
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full">
+              <Button 
+                onClick={openBookingModal}
+                className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full"
+              >
                 <Phone className="w-4 h-4 mr-2" />
                 Записаться
               </Button>
@@ -112,12 +117,21 @@ export function Header() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                className="mt-8"
+                className="mt-8 space-y-4"
               >
-                <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-full py-6 text-lg">
+                <Button 
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    openBookingModal();
+                  }}
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-full py-6 text-lg"
+                >
                   <Phone className="w-5 h-5 mr-2" />
-                  +7 (495) 123-45-67
+                  Записаться на сервис
                 </Button>
+                <a href="tel:+74951234567" className="block text-center text-muted-foreground hover:text-foreground transition-colors">
+                  +7 (495) 123-45-67
+                </a>
               </motion.div>
             </div>
           </motion.div>
